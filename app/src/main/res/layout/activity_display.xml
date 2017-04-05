@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/display_activity_main_layout"
+    android:background="#34495e">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20">
+
+        <TextView
+            android:id="@+id/got_through"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Through"
+            android:textSize="22sp"
+            android:layout_weight="80"
+            />
+
+        <Button
+            android:layout_weight="20"
+            android:textSize="22sp"
+            android:id="@+id/refreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/grid_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_weight="60">
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:numColumns="auto_fit"
+            android:adjustViewBounds="true"
+            android:horizontalSpacing="0dip"
+            android:verticalSpacing="0dip"
+            android:stretchMode="none"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/min_cost_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Minimum Cost:"
+            android:layout_above="@+id/min_cost_path"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_margin="5dp"
+            android:textSize="22sp"
+            />
+
+        <TextView
+            android:id="@+id/min_cost_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Path"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_margin="5dp"
+            android:textSize="22sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

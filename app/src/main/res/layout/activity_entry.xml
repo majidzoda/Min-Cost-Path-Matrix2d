@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/display_activity_main_layout"
+    android:background="#34495e">
+
+    <LinearLayout
+        android:id="@+id/grid_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_weight="60"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/seeExamplesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="SEE EXAMPLES"/>
+
+        <TextView
+            android:id="@+id/got_through"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="OR"
+            android:textSize="10sp"
+            android:textColor="@android:color/white"
+            />
+
+        <Button
+            android:id="@+id/inputMatrixGUIButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:text="INPUT MATRIX"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
