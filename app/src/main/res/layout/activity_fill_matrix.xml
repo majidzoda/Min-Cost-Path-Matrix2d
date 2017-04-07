@@ -18,24 +18,66 @@
         />
 
     <RelativeLayout
-        android:id="@+id/fill_matrix_grid_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/fill_matrix_grid_container"
         android:layout_weight="60">
 
-        <GridView
-            android:id="@+id/fill_matrix_grid_view"
-            android:gravity="center_horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:numColumns="auto_fit"
-            android:verticalSpacing="1dp"
-            android:horizontalSpacing="1dp"
-            android:stretchMode="none"
-            />
+        <!--<ScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<HorizontalScrollView-->
+                <!--android:id="@+id/fill_matrix_grid_container"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<GridView-->
+                    <!--android:id="@+id/fill_matrix_grid_view"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:numColumns="auto_fit"-->
+                    <!--android:verticalSpacing="1dp"-->
+                    <!--android:horizontalSpacing="1dp"-->
+                    <!--android:stretchMode="none"-->
+                <!--/>-->
+
+            <!--</HorizontalScrollView>-->
+        <!--</ScrollView>-->
+
+        <ScrollView
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:scrollbars="vertical">
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true">-->
+
+        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:scrollbars="horizontal"
+
+
+            android:layout_width="match_parent" android:layout_height="match_parent">
+            <GridView
+                android:id="@+id/fill_matrix_grid_view"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:numColumns="auto_fit"
+                android:verticalSpacing="1dp"
+                android:horizontalSpacing="1dp"
+                android:stretchMode="spacingWidthUniform"
+                />
+        </HorizontalScrollView>
+
+        </ScrollView>
+
+
 
     </RelativeLayout>
 

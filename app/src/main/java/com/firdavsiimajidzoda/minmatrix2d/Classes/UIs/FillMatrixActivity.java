@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class FillMatrixActivity extends AppCompatActivity {
         final int column = bundle.getInt("matrixSizeColumn");
 
         // Initialize matrix-GridView and configure the size to fit the Grid in the screen
-        final RelativeLayout gridParentLayout = (RelativeLayout)findViewById(R.id.fill_matrix_grid_container);
+        final RelativeLayout gridParentLayout = (RelativeLayout) findViewById(R.id.fill_matrix_grid_container);
         gridParentLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
