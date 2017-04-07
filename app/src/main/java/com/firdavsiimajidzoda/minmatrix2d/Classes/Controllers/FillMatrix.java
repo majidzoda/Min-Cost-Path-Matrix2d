@@ -7,12 +7,17 @@ package com.firdavsiimajidzoda.minmatrix2d.Classes.Controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.DisplayContext;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,14 +84,20 @@ public class FillMatrix extends BaseAdapter {
         return 0;
     }
 
+
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         // Getting index of an element based on its position in GridView
         final int currentRow = (position)/column;
         final int currentColumn = (position - (currentRow+1)*column)+column;
 
         // Convert the view as a NumberPicker widget
         final EditText cellEditText = new EditText(context);
+
+        cellEditText.setText(matrix[currentRow][currentColumn]+"");
 
         // Set EditText color
         cellEditText.setTextColor(Color.WHITE);
@@ -122,7 +133,9 @@ public class FillMatrix extends BaseAdapter {
         // Set the Button background color
         cellEditText.setBackgroundResource(R.drawable.regular_cell_shape);
 
+        cellEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 
+        cellEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
 
         cellEditText.addTextChangedListener(new TextWatcher() {
@@ -140,7 +153,6 @@ public class FillMatrix extends BaseAdapter {
             public void afterTextChanged(Editable s) {
                 try {
                     matrix[currentRow][currentColumn] = Integer.parseInt(cellEditText.getText().toString());
-                    cellEditText.setBackgroundResource(R.drawable.selected_cell_shape);
                 } catch (Exception exception){
                     if (!cellEditText.getText().toString().matches("")){
                         Toast.makeText(context, "Only numbers allowed", Toast.LENGTH_SHORT).show();
@@ -165,8 +177,12 @@ public class FillMatrix extends BaseAdapter {
             }
         });
 
+
+
+
         // Return the NumberPicker as GridView item
         return cellEditText;
+
 
     }
 }

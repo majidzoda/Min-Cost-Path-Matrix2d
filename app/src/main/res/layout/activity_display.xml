@@ -9,14 +9,14 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="20">
+        android:layout_height="0dp"
+        android:layout_weight="10">
 
         <TextView
             android:id="@+id/got_through"
             android:gravity="center_horizontal|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:text="Through"
             android:textSize="22sp"
@@ -25,10 +25,11 @@
 
         <Button
             android:layout_weight="20"
-            android:textSize="22sp"
+
+            android:paddingTop="100dp"
             android:id="@+id/refreshButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
@@ -36,9 +37,9 @@
     <RelativeLayout
         android:id="@+id/grid_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center_horizontal"
-        android:layout_weight="60">
+        android:layout_weight="70">
 
         <GridView
             android:id="@+id/gridview"
@@ -58,7 +59,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="20"
         android:orientation="vertical">
 

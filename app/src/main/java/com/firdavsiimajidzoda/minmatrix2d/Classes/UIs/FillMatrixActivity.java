@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -21,7 +22,7 @@ import static android.view.View.MeasureSpec.EXACTLY;
 /**
  * FillMatrixActivity to fill the Matrix values and pass the Matrix data to DisplayActivity.class
  */
-public class FillMatrixActivity extends AppCompatActivity {
+public class FillMatrixActivity extends AppCompatActivity{
     // Binding views and outlets
     private TextView promptTextView;
     private Button showResultButton;
@@ -83,7 +84,10 @@ public class FillMatrixActivity extends AppCompatActivity {
         // Set GridView adapter
         gridView.setAdapter(fillMatrix);
 
-        setDynamicWidth(gridView, column);
+        if (column > 6){
+            setDynamicWidth(gridView, column);
+        }
+
     }
     private void setDynamicWidth(GridView gridView, int column) {
         ListAdapter gridViewAdapter = gridView.getAdapter();
