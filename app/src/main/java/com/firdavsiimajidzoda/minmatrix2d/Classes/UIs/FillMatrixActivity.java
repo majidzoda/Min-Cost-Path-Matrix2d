@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.firdavsiimajidzoda.minmatrix2d.Classes.Controllers.FillMatrix;
 import com.firdavsiimajidzoda.minmatrix2d.R;
 
+import static android.view.View.MeasureSpec.EXACTLY;
+
 /**
  * FillMatrixActivity to fill the Matrix values and pass the Matrix data to DisplayActivity.class
  */
@@ -81,9 +83,9 @@ public class FillMatrixActivity extends AppCompatActivity {
         // Set GridView adapter
         gridView.setAdapter(fillMatrix);
 
-        setDynamicWidth(gridView);
+        setDynamicWidth(gridView, column);
     }
-    private void setDynamicWidth(GridView gridView) {
+    private void setDynamicWidth(GridView gridView, int column) {
         ListAdapter gridViewAdapter = gridView.getAdapter();
         if (gridViewAdapter == null) {
             return;
@@ -91,9 +93,9 @@ public class FillMatrixActivity extends AppCompatActivity {
         int totalWidth;
         int items = gridViewAdapter.getCount();
         View listItem = gridViewAdapter.getView(0, null, gridView);
-        listItem.measure(0, 0);
-        totalWidth = listItem.getMeasuredWidth();
-        totalWidth = totalWidth*items;
+        listItem.measure(0,0);
+        totalWidth = listItem.getMeasuredWidth()+160;
+        totalWidth = totalWidth*column;
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.width = totalWidth;
         gridView.setLayoutParams(params);

@@ -8,14 +8,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firdavsiimajidzoda.minmatrix2d.Classes.UIs.DisplayActivity;
 import com.firdavsiimajidzoda.minmatrix2d.Classes.UIs.FillMatrixActivity;
@@ -82,17 +86,25 @@ public class FillMatrix extends BaseAdapter {
         final int currentColumn = (position - (currentRow+1)*column)+column;
 
         // Convert the view as a NumberPicker widget
-        final TextView cellNumberPicker = new TextView(context);
+        final EditText cellEditText = new EditText(context);
 
+        // Set EditText color
+        cellEditText.setTextColor(Color.WHITE);
+
+        // Set Hint text color
+        cellEditText.setHintTextColor(Color.WHITE);
+
+        // Set hint to 0
+        cellEditText.setHint("0");
 
         // Set the layout parameters for NumberPicker
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT
         );
-        cellNumberPicker.setLayoutParams(lp);
+        cellEditText.setLayoutParams(lp);
 
         // Get the NumberPicker LayoutParams
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) cellNumberPicker.getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) cellEditText.getLayoutParams();
 
         // Set the width of NumberPicker (item of GridView)
         params.width = (int)cellSize -15;
@@ -100,35 +112,44 @@ public class FillMatrix extends BaseAdapter {
         // Set the NumberPicker height (GridView item/row equal height)
         params.height = (int)cellSize -15;
 
-
-
         // Set the NumberPicker layout parameters
-        cellNumberPicker.setLayoutParams(params);
+        cellEditText.setLayoutParams(params);
 
 
         // Display NumberPicker text in center position
-        cellNumberPicker.setGravity(Gravity.CENTER);
+        cellEditText.setGravity(Gravity.CENTER);
 
         // Set the Button background color
-        cellNumberPicker.setBackgroundResource(R.drawable.regular_cell_shape);
+        cellEditText.setBackgroundResource(R.drawable.regular_cell_shape);
 
-        // Configure NumberPicker min and max, wrapping, disable keyboard
-//        cellNumberPicker.setMinValue(0);
-//        cellNumberPicker.setMaxValue(99);
-//        cellNumberPicker.setWrapSelectorWheel(false);
-//        cellNumberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-//
-//
-//
-//        // Set NumberPicker on click listener to set value to Matrix
-//        cellNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-//                matrix[currentRow][currentColumn] = newVal;
-//                cellNumberPicker.setBackgroundResource(R.drawable.selected_cell_shape);
-//
-//            }
-//        });
+
+
+
+        cellEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    matrix[currentRow][currentColumn] = Integer.parseInt(cellEditText.getText().toString());
+                    cellEditText.setBackgroundResource(R.drawable.selected_cell_shape);
+                } catch (Exception exception){
+                    if (!cellEditText.getText().toString().matches("")){
+                        Toast.makeText(context, "Only numbers allowed", Toast.LENGTH_SHORT).show();
+                        cellEditText.setText("");
+                    }
+
+                }
+            }
+        });
 
         // Set showButton on click to intent pass the input data and open DisplayActivity.class
         showResultButton.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +166,7 @@ public class FillMatrix extends BaseAdapter {
         });
 
         // Return the NumberPicker as GridView item
-        return cellNumberPicker;
+        return cellEditText;
 
     }
 }
