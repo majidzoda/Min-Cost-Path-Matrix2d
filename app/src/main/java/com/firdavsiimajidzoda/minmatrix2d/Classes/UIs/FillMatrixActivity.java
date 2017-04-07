@@ -3,10 +3,13 @@ package com.firdavsiimajidzoda.minmatrix2d.Classes.UIs;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
+import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,16 +70,33 @@ public class FillMatrixActivity extends AppCompatActivity {
         GridView gridView = (GridView)findViewById(R.id.fill_matrix_grid_view);
 
         // Creating FillMatrix - adapter for GridView
-        FillMatrix fillMatrix = new FillMatrix(this, width/cellSize, row, column, showResultButton);
+        FillMatrix fillMatrix = new FillMatrix(this, width/6, row, column, showResultButton);
 
         // Set GridView column width to matrix column
-        gridView.setColumnWidth((int) (width/cellSize));
+        gridView.setColumnWidth((int) (width/6));
 
         // Set number of GtidView column to matrix column
         gridView.setNumColumns(column);
 
         // Set GridView adapter
         gridView.setAdapter(fillMatrix);
+
+        setDynamicWidth(gridView);
+    }
+    private void setDynamicWidth(GridView gridView) {
+        ListAdapter gridViewAdapter = gridView.getAdapter();
+        if (gridViewAdapter == null) {
+            return;
+        }
+        int totalWidth;
+        int items = gridViewAdapter.getCount();
+        View listItem = gridViewAdapter.getView(0, null, gridView);
+        listItem.measure(0, 0);
+        totalWidth = listItem.getMeasuredWidth();
+        totalWidth = totalWidth*items;
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.width = totalWidth;
+        gridView.setLayoutParams(params);
     }
 }
 

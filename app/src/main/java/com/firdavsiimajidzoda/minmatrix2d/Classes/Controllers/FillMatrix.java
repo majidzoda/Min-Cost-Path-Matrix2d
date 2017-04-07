@@ -15,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.firdavsiimajidzoda.minmatrix2d.Classes.UIs.DisplayActivity;
 import com.firdavsiimajidzoda.minmatrix2d.Classes.UIs.FillMatrixActivity;
@@ -81,7 +82,7 @@ public class FillMatrix extends BaseAdapter {
         final int currentColumn = (position - (currentRow+1)*column)+column;
 
         // Convert the view as a NumberPicker widget
-        final NumberPicker cellNumberPicker = new NumberPicker(context);
+        final TextView cellNumberPicker = new TextView(context);
 
 
         // Set the layout parameters for NumberPicker
@@ -112,22 +113,22 @@ public class FillMatrix extends BaseAdapter {
         cellNumberPicker.setBackgroundResource(R.drawable.regular_cell_shape);
 
         // Configure NumberPicker min and max, wrapping, disable keyboard
-        cellNumberPicker.setMinValue(0);
-        cellNumberPicker.setMaxValue(99);
-        cellNumberPicker.setWrapSelectorWheel(false);
-        cellNumberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-
-
-        // Set NumberPicker on click listener to set value to Matrix
-        cellNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                matrix[currentRow][currentColumn] = newVal;
-                cellNumberPicker.setBackgroundResource(R.drawable.selected_cell_shape);
-
-            }
-        });
+//        cellNumberPicker.setMinValue(0);
+//        cellNumberPicker.setMaxValue(99);
+//        cellNumberPicker.setWrapSelectorWheel(false);
+//        cellNumberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+//
+//
+//
+//        // Set NumberPicker on click listener to set value to Matrix
+//        cellNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+//                matrix[currentRow][currentColumn] = newVal;
+//                cellNumberPicker.setBackgroundResource(R.drawable.selected_cell_shape);
+//
+//            }
+//        });
 
         // Set showButton on click to intent pass the input data and open DisplayActivity.class
         showResultButton.setOnClickListener(new View.OnClickListener() {
