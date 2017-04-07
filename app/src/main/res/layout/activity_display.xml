@@ -25,8 +25,8 @@
 
         <Button
             android:layout_weight="20"
-
             android:paddingTop="100dp"
+            android:textSize="22sp"
             android:id="@+id/refreshButton"
             android:layout_width="0dp"
             android:layout_height="match_parent" />

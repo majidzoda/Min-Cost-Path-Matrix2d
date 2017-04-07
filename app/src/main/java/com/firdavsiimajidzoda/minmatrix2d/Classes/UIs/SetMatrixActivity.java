@@ -124,6 +124,9 @@ public class SetMatrixActivity extends AppCompatActivity {
 //        });
     }
 
+    /**
+     *  Updates state of nextButton. Enable it if data for row and column are valid
+     */
     private void validateNextButton(){
         if (!rowEditText.getText().toString().matches("") && !columnEditText.getText().toString().matches("")){
             try {

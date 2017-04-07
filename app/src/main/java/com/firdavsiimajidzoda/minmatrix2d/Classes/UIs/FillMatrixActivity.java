@@ -84,22 +84,35 @@ public class FillMatrixActivity extends AppCompatActivity{
         // Set GridView adapter
         gridView.setAdapter(fillMatrix);
 
-        if (column > 6){
-            setDynamicWidth(gridView, column);
-        }
+        // Set gridView adapter to ListAdapter. Enabling horizontal scrolling
+        setDynamicWidth(gridView, column);
+
 
     }
+
+    /**
+     * Measuring width of grid view and seting it's adapter to ListAdapter to make GridView enable for horizontal scrolling
+     * @param gridView
+     * @param column
+     */
     private void setDynamicWidth(GridView gridView, int column) {
+        // Initializing ListAdapter from GridView BaseAdapter
         ListAdapter gridViewAdapter = gridView.getAdapter();
         if (gridViewAdapter == null) {
             return;
         }
+
         int totalWidth;
-        int items = gridViewAdapter.getCount();
+
+        // Getting a first cell
         View listItem = gridViewAdapter.getView(0, null, gridView);
+
+        // Measuring the with of GridView
         listItem.measure(0,0);
         totalWidth = listItem.getMeasuredWidth()+160;
         totalWidth = totalWidth*column;
+
+        // Setting new params
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.width = totalWidth;
         gridView.setLayoutParams(params);
