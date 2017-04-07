@@ -23,7 +23,7 @@
             android:text="SEE EXAMPLES"/>
 
         <TextView
-            android:id="@+id/got_through"
+            android:id="@+id/or_text_view"
             android:gravity="center_horizontal|center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             />
 
         <Button
-            android:id="@+id/inputMatrixGUIButton"
+            android:id="@+id/inputMatrixButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="22sp"

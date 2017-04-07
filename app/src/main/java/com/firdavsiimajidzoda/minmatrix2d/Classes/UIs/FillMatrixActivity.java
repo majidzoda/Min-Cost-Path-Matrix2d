@@ -3,19 +3,26 @@ package com.firdavsiimajidzoda.minmatrix2d.Classes.UIs;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
+import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firdavsiimajidzoda.minmatrix2d.Classes.Controllers.FillMatrix;
 import com.firdavsiimajidzoda.minmatrix2d.R;
 
+import static android.view.View.MeasureSpec.EXACTLY;
+
 /**
  * FillMatrixActivity to fill the Matrix values and pass the Matrix data to DisplayActivity.class
  */
-public class FillMatrixActivity extends AppCompatActivity {
+public class FillMatrixActivity extends AppCompatActivity{
     // Binding views and outlets
     private TextView promptTextView;
     private Button showResultButton;
@@ -37,7 +44,7 @@ public class FillMatrixActivity extends AppCompatActivity {
         final int column = bundle.getInt("matrixSizeColumn");
 
         // Initialize matrix-GridView and configure the size to fit the Grid in the screen
-        final RelativeLayout gridParentLayout = (RelativeLayout)findViewById(R.id.fill_matrix_grid_container);
+        final RelativeLayout gridParentLayout = (RelativeLayout) findViewById(R.id.fill_matrix_grid_container);
         gridParentLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -66,16 +73,49 @@ public class FillMatrixActivity extends AppCompatActivity {
         GridView gridView = (GridView)findViewById(R.id.fill_matrix_grid_view);
 
         // Creating FillMatrix - adapter for GridView
-        FillMatrix fillMatrix = new FillMatrix(this, width/cellSize, row, column, showResultButton);
+        FillMatrix fillMatrix = new FillMatrix(this, width/6, row, column, showResultButton);
 
         // Set GridView column width to matrix column
-        gridView.setColumnWidth((int) (width/cellSize));
+        gridView.setColumnWidth((int) (width/6));
 
         // Set number of GtidView column to matrix column
         gridView.setNumColumns(column);
 
         // Set GridView adapter
         gridView.setAdapter(fillMatrix);
+
+        // Set gridView adapter to ListAdapter. Enabling horizontal scrolling
+        setDynamicWidth(gridView, column);
+
+
+    }
+
+    /**
+     * Measuring width of grid view and seting it's adapter to ListAdapter to make GridView enable for horizontal scrolling
+     * @param gridView
+     * @param column
+     */
+    private void setDynamicWidth(GridView gridView, int column) {
+        // Initializing ListAdapter from GridView BaseAdapter
+        ListAdapter gridViewAdapter = gridView.getAdapter();
+        if (gridViewAdapter == null) {
+            return;
+        }
+
+        int totalWidth;
+
+        // Getting a first cell
+        View listItem = gridViewAdapter.getView(0, null, gridView);
+
+        // Measuring the with of GridView
+        listItem.measure(0,0);
+        totalWidth = listItem.getMeasuredWidth()+160;
+        totalWidth = totalWidth*column;
+
+        // Setting new params
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.width = totalWidth;
+        gridView.setLayoutParams(params);
     }
 }
 

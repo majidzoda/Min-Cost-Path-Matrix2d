@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firdavsiimajidzoda.minmatrix2d.Classes.Model.Cell;
+import com.firdavsiimajidzoda.minmatrix2d.Classes.Utils.AutoResizeTextView;
 import com.firdavsiimajidzoda.minmatrix2d.R;
 
 import java.util.ArrayList;
@@ -259,14 +260,14 @@ public class MinimumCost extends BaseAdapter {
         int column = (position - (row+1)*matrixSizeColumn)+matrixSizeColumn;
 
         // Convert the view as a TextView
-        TextView cellTextView = new TextView(context);
+        AutoResizeTextView cellTextView = new AutoResizeTextView(context);
 
         // set the TextView text color (GridView item color)
         cellTextView.setTextColor(Color.WHITE);
 
         // Set the layout parameters for TextView
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT
+                RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         cellTextView.setLayoutParams(lp);
 
@@ -287,7 +288,7 @@ public class MinimumCost extends BaseAdapter {
 
         // Set the TextView text font family and text size
         cellTextView.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
-        cellTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+//        cellTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
 
         // Set the TextView text (GridView item text)
         cellTextView.setText(""+givenMatrix[row][column]);
